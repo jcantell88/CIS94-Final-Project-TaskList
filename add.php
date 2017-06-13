@@ -4,9 +4,15 @@ include 'Page.php';
 $page = new Page();
 $page->title = 'Add Task';
 
+
+
+include 'Task.php'; 
+include 'TaskList.php';
 include 'header.php';
 include 'form_tpl.php';
 include 'footer.php';
+
+
 
 // 1.
 // Put the Task class in a file called Task.php
@@ -20,8 +26,11 @@ function addTask($input) {
     // the following function is only called right now
     // to "debug" the addTask function, it should not be in the final
     // version of this code
-    var_dump($input);
-    
+	$task = new Task($input["task"],$input["note"],$input["datecompleted"],"12/05/2017");
+	$taskManager = new TaskList; 
+	$taskManager->SaveTask($task) ;
+
+
 }
 
 // 3. 
@@ -31,3 +40,6 @@ function addTask($input) {
 if(isset($_POST['submit'])) {
    addTask($_POST); 
 }
+
+
+?>
